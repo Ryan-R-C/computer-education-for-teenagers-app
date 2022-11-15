@@ -1,5 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import TaskControllerProvider from "./contexts/TaskControllerProvider";
+import TaskProvider from "./contexts/TaskProvider";
+import SubTaskProvider from "./contexts/SubTaskProvider";
+import QuestionProvider from "./contexts/QuestionProvider";
+import OptionsProvider from "./contexts/OptionsProvider";
 import Dashboard from "./pages/Dashboard";
 import LandingPage from "./pages/LandingPage";
 import TaskExplanation from "./pages/TaskExplanation";
@@ -21,23 +25,30 @@ export const footerProps = [
   },
 ]
 
-
 const RoutesApp = () => {
   return (
-          <TaskControllerProvider>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/dashboard/" element={<Dashboard />} />
-                <Route path="/explanation-task/:id" element={<TaskExplanation />} />
-                <Route path="/task/:id" element={<Tasks />} />
-                <Route path="/test/" element={<Test />} />
-                {/*
-                <Route path="/cadastro" element={<SignUp />} /> */}
-            
-              </Routes>
-            </BrowserRouter>
-          </TaskControllerProvider>
+          <TaskProvider>
+            <SubTaskProvider>
+              <QuestionProvider>
+                <OptionsProvider>
+                  <TaskControllerProvider>
+                    <BrowserRouter>
+                      <Routes>
+                        <Route path="/" element={<LandingPage />} />
+                        <Route path="/dashboard/" element={<Dashboard />} />
+                        <Route path="/explanation-task/:_id" element={<TaskExplanation />} />
+                        <Route path="/task/:_id" element={<Tasks />} />
+                        <Route path="/test/" element={<Test />} />
+                        {/*
+                        <Route path="/cadastro" element={<SignUp />} /> */}
+                  
+                      </Routes>
+                    </BrowserRouter>
+                  </TaskControllerProvider>
+                </OptionsProvider>
+              </QuestionProvider>
+            </SubTaskProvider>
+          </TaskProvider>
   )
 };
 
