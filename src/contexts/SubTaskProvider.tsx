@@ -13,7 +13,6 @@ export default function SubTasksProvider({ children }: ReactProps) {
   async function loadSubTask(filter?: string) {
     setLoadingSubmit(false);
 
-    console.log(filter);
     const allSubTask = await SubTaskService.listWithManyFilters(filter);
     setSubTask(allSubTask);
 

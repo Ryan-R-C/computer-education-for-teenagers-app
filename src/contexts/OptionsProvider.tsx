@@ -13,7 +13,6 @@ export default function OptionsProvider({ children }: ReactProps) {
   async function loadOption(filter?: string) {
     setLoadingSubmit(false);
 
-    console.log(filter);
     const allOption = await OptionService.listWithManyFilters(filter);
     setOption(allOption);
 

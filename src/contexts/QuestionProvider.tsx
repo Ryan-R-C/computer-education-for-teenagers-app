@@ -13,7 +13,6 @@ export default function QuestionsProvider({ children }: ReactProps) {
   async function loadQuestion(filter?: string) {
     setLoadingSubmit(false);
 
-    console.log(filter);
     const allQuestion = await QuestionService.listWithManyFilters(filter);
     setQuestion(allQuestion);
 

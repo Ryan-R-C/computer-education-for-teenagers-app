@@ -16,10 +16,10 @@ export default function TaskControllerProvider({ children }: ReactProps) {
   const [loadingSubmit, setLoadingSubmit] = useState(false);
 
 
-  async function findFitCultural(id: string) {
+  async function findFitCultural(_id: string) {
     try {
       setLoadingSubmit(true);
-      // const selectedFitCultural = await FitCultural.find(id);
+      // const selectedFitCultural = await FitCultural.find(_id);
       const selectedFitCultural = {};
 
       return selectedFitCultural;

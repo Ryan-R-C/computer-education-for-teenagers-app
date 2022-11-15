@@ -13,7 +13,7 @@ export default function TasksProvider({ children }: ReactProps) {
   async function loadTask(filter?: string) {
     setLoadingSubmit(false);
 
-    console.log(filter);
+    
     const allTask = await TaskService.listWithManyFilters(filter);
     setTask(allTask);
 
