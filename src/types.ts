@@ -1,7 +1,7 @@
 import { ReactNode, CSSProperties } from "react"
 
 export interface iData {
-    id:    string
+    _id:    string
     value: string
 }
 
@@ -11,8 +11,6 @@ export interface ReactProps {
     style?: CSSProperties,
     onClick?: (e: any) => any,
 }
-
-
 
 
 export interface ButtonProps extends ReactProps {
@@ -72,13 +70,15 @@ export interface TaskProps  {
   tasksQuantity: number, // isFinished = tasksQuantity == tasksFinished
   tasksFinished: number,
   icon:          string,
-  id:            string,
+  _id:            string,
 
   tasks?: QuestionProps[]  
+  subTasks: QuestionProps[]  
+  
 }
 
 
-export interface SubtaskProps  {
+export interface SubTaskProps  {
   content?: string | string[],
   questions?: QuestionProps[],
 }
@@ -86,6 +86,7 @@ export interface SubtaskProps  {
 
 
 export interface QuestionProps  {
+  _id?: string,
   question?: string,
   answer?: string,
   description?: string,
@@ -105,6 +106,13 @@ export interface OptionProps  {
   title: string,
   isCorrect: boolean,
   description?: string,
-  id?: string | number,
+  _id?: string | number,
   image?: string,
+}
+
+
+
+export interface TaskPropsChildren  {
+  tasksAvaliable?: TaskProps[]
+  tasks?: TaskProps[]
 }
