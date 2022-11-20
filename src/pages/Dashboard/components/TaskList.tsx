@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import * as S from "../Dashboard.styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Icons from "../../../components/icons";
 import CardContainer from "../../../components/boxes/CardContainer";
@@ -9,8 +9,29 @@ import PlayIcon from "../../../components/icons/PlayIcon";
 import { TaskPropsChildren } from "../../../types";
 
 
+import { setTaskId } from "../../../utils/localStorage";
+
+
+function getTasksFinished(level, tasksQuantity){
+  if(!level) return 0;
+  else if(level >= tasksQuantity) return tasksQuantity;
+  else return level;
+}
+
 
 export default function TaskList({ tasksAvaliable }: TaskPropsChildren) {
+  let navigate = useNavigate();
+
+  
+  function handleLocaleTask(taskId: string, subtaskId: string){
+    setTaskId(taskId)
+
+    navigate(
+      `/explanation-task/${subtaskId}`
+    );
+
+  }
+ 
   return (
     <>
      <S.TaskContainer>
@@ -19,7 +40,7 @@ export default function TaskList({ tasksAvaliable }: TaskPropsChildren) {
               ({
                 title,
                 subTasks,
-                tasksFinished,
+                userScore,
                 icon,
                 _id,
               },
@@ -27,19 +48,22 @@ export default function TaskList({ tasksAvaliable }: TaskPropsChildren) {
               ) => {
                 const Icon = Icons[icon]
 
-                const tasksQuantity = subTasks!.length
+                const level = userScore[0]?.level
+                const tasksQuantity = subTasks?.length
+                const tasksFinished =  getTasksFinished(level, tasksQuantity);
+
 
                 {/* PEGAR A LENGHT DAS TASKS FINALIZADAS, CASO FOR IGUAL AO SUBTASKS DIMINUIR 1 */}
-                const currentSubtaskId = (subTasks[tasksFinished || 0]._id)
+                const currentSubtaskId: string = (subTasks[tasksFinished] || subTasks[tasksFinished - 1])
 
                 return (
-                  <CardContainer key={_id + index}>
+                  <CardContainer key={`${_id}` + index}>
                     <S.TitleContainer>
-                      <Link to={`/explanation-task/${currentSubtaskId}`}>
+                      <section onClick={() => handleLocaleTask(_id, currentSubtaskId!)}>
                         <S.IconContainer>
                           <Icon size={66} />
                         </S.IconContainer>
-                      </Link>
+                      </section>
                       <p>
                         {
                           title
@@ -52,9 +76,9 @@ export default function TaskList({ tasksAvaliable }: TaskPropsChildren) {
                         <Bar percentage={tasksFinished / tasksQuantity * 100} />
                         <p>{tasksFinished}/{tasksQuantity}</p>
                       </div>
-                      <Link to={`/explanation-task/${currentSubtaskId}`}>
+                      <section onClick={() => handleLocaleTask(_id, currentSubtaskId!)}>
                         <PlayIcon size={50} />
-                      </Link>
+                      </section>
                     </S.BarContainer>
                   </CardContainer>
                 )
