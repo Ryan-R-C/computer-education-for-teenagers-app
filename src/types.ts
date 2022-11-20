@@ -73,7 +73,9 @@ export interface TaskProps  {
   _id:            string,
 
   tasks?: QuestionProps[]  
-  subTasks: QuestionProps[]  
+  subTasks: string[];
+  // subTasks: QuestionProps[] 
+  userScore: UserScoreProps[]
   
 }
 
@@ -115,4 +117,20 @@ export interface OptionProps  {
 export interface TaskPropsChildren  {
   tasksAvaliable?: TaskProps[]
   tasks?: TaskProps[]
+}
+
+export interface UserProps  {
+  _id:      string,
+  email:    string,
+  nome:     string,
+  nickName: string,
+}
+
+
+export interface UserScoreProps  {
+  _id?:    string,
+  user:   string,
+  hits:   number,
+  misses: number,
+  level: number
 }
