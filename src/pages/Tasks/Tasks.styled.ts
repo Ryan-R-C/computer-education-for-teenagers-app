@@ -69,12 +69,13 @@ height: 100%;
 margin-bottom: 10px;
 
 img{
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
 
   object-fit: contain;
   max-width: 80vw;
   max-height: 34vh;
+  border-radius: 20px;
 
 }
 `
