@@ -19,7 +19,7 @@ export default function SelectTaskComponent({ task }: TaskComponentProps) {
   const [selectedOptions, setSelectedOptions] = useState<(string | number)[]>([]);
   
   function getSelectedOptionValue(option: string | number) {
-    const optionSelected: OptionProps[] | undefined = task?.options?.filter(element => element?.id == option)
+    const optionSelected: OptionProps[] | undefined = task?.options?.filter(element => element?._id == option)
 
     if (!optionSelected) return;
 
@@ -72,12 +72,12 @@ export default function SelectTaskComponent({ task }: TaskComponentProps) {
     const totalCorrects: OptionProps[] | undefined = task.options?.filter(
       (option) => option.isCorrect == true
     )
-      .sort((previous: OptionProps, next: OptionProps) => previous!.id! > next!.id! ? 1 : next!.id! > previous!.id! ? -1 : 0)
+      .sort((previous: OptionProps, next: OptionProps) => previous!._id! > next!._id! ? 1 : next!._id! > previous!._id! ? -1 : 0)
 
     const userAnwer: OptionProps[] | undefined = optionIds.map(
       (optionId) => getSelectedOptionValue(optionId)!
     )
-      .sort((previous: OptionProps, next: OptionProps) => previous?.id! > next?.id! ? 1 : next!.id! > previous!.id! ? -1 : 0)
+      .sort((previous: OptionProps, next: OptionProps) => previous?._id! > next?._id! ? 1 : next!._id! > previous!._id! ? -1 : 0)
 
 
     const isCorrect = JSON.stringify(userAnwer) === JSON.stringify(totalCorrects);
@@ -112,7 +112,7 @@ export default function SelectTaskComponent({ task }: TaskComponentProps) {
               (option) => {
                 const buttonProps = getSelectedOptionValue(option)
                 return (
-                  <ButtonOption onClick={() => addToList(buttonProps?.id!)}>
+                  <ButtonOption onClick={() => addToList(buttonProps?._id!)}>
                     {
                       buttonProps?.title
                     }
@@ -128,9 +128,9 @@ export default function SelectTaskComponent({ task }: TaskComponentProps) {
       <S.OptionsContainer>
         {
           task?.options?.map(
-            ({ title, id, isCorrect }) => (
+            ({ title, _id }) => (
               <>
-                <ButtonOption key={id} isUnSet={selectedOptions.includes(id!)} onClick={() => addToList(id!)}>
+                <ButtonOption key={_id} isUnSet={selectedOptions.includes(_id!)} onClick={() => addToList(_id!)}>
                   {title}
                 </ButtonOption>
               </>

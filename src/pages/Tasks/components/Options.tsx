@@ -68,9 +68,9 @@ export default function SelectOptionComponent({ task }: TaskComponentProps) {
       <S.OptionsContainer>
         {
           task?.options?.map(
-            ({ title, id, isCorrect }) => (
+            ({ title, _id, isCorrect }) => (
               <S.ButtonsContainer>
-                <ButtonOption key={id} isSelected={selectedOptions == id} onClick={() => handleCheckIsCorrect(id!, isCorrect!)}>
+                <ButtonOption key={_id} isSelected={selectedOptions == _id} onClick={() => handleCheckIsCorrect(_id!, isCorrect!)}>
                   {title}
                 </ButtonOption>
               </S.ButtonsContainer>

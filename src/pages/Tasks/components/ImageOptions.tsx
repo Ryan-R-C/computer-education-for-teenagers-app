@@ -8,6 +8,7 @@ import ButtonOption from "../../../components/buttons/ButtonOption";
 import ImageButtonOption from "../../../components/buttons/ImageButtonOption";
 import Title from "../../../components/typography/Title";
 import { useTaskController } from "../../../contexts/TaskControllerProvider";
+import { load } from "nock/types";
 
 export default function SelectImageOptionComponent({ task }: TaskComponentProps) {
 
@@ -21,6 +22,8 @@ export default function SelectImageOptionComponent({ task }: TaskComponentProps)
 
   function addToList(optionId: number | string) {
     if(!!loadingSubmit) return;
+
+    console.log(loadingSubmit)
 
     setCurrentQuestion(task)
 
@@ -36,6 +39,9 @@ export default function SelectImageOptionComponent({ task }: TaskComponentProps)
 
 
   function handleCheckIsCorrect(optionId: number | string, isCorrect: boolean) {
+    if(!!loadingSubmit) return;
+    
+
     addToList(optionId)
 
     if (isCorrect) setIsCorrectAnswer(true)
@@ -61,9 +67,9 @@ export default function SelectImageOptionComponent({ task }: TaskComponentProps)
             <S.OptionsContainer>
               {
                 task?.options?.map(
-                  ({ title, id, image, isCorrect }) => (
+                  ({ title, _id, image, isCorrect }) => (
                     <>
-                      <ImageButtonOption image={image} key={id} isSelected={selectedOptions == id} onClick={() => handleCheckIsCorrect(id!, isCorrect!)}>
+                      <ImageButtonOption image={image} key={_id} isSelected={selectedOptions == _id} onClick={() => handleCheckIsCorrect(_id!, isCorrect!)}>
                         {title}
                       </ImageButtonOption>
                     </>
