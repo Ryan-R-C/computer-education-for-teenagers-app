@@ -29,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
 
 p {
   font-size: 16px;
+  line-height: 25px;
 }
 
 `
