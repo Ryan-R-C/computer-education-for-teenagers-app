@@ -10,14 +10,24 @@
     "@types/node": "^16.18.0",
     "@types/react": "^18.0.23",
     "@types/react-dom": "^18.0.7",
+    "@types/styled-components": "^5.1.26",
+    "axios": "^1.1.3",
+    "dotenv": "^16.0.3",
+    "iconsax-react": "^0.0.8",
+    "nock": "^13.2.9",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.6.0",
+    "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "styled-components": "^5.3.6",
     "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "REACT_APP_ENVNODE=\"development\" react-scripts start",
+    "start": "REACT_APP_ENVNODE=\"production\" react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -39,5 +49,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "npm": ">=7.0.0 <9.0.0",
+    "node": ">=16.10.0 <17.0.0"
   }
 }
