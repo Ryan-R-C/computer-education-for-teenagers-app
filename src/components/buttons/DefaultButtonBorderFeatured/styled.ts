@@ -14,9 +14,11 @@ export const Button = styled.button`
         align-self: flex-start;
         
         justify-content: center;
-        padding: 10px 43px;
         color: #FFFFFF !important;
-        font-size: 20px;
+        font-size: 16px;
+        /* padding: 10px 43px; */
+        padding: 12px 16px;
+
 
         border-radius: ${(props) => {
                 if(props.theme === 'left')

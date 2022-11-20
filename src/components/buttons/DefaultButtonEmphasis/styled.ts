@@ -14,9 +14,11 @@ export const Button = styled.button`
         align-self: flex-start;
 
         justify-content: center;
-        padding: 10px 43px;
         color: #FFFFFF !important;
-        font-size: 30px;
+        font-size: 22px;
+        /* padding: 10px 43px; */
+        padding: 16px 43px;
+
 
 
 

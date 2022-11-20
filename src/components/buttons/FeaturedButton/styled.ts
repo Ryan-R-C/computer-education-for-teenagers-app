@@ -4,9 +4,9 @@ export const Button = styled.button`
         align-items: center;
         background-color: #FFFFFF;
 
-        border-width: 1px;
+        border-width: 1.5px;
         border-style: solid;
-        border-color: #D9D9D9;
+        border-color: #a6a6a6;
 
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
         cursor: pointer;
@@ -22,14 +22,15 @@ export const Button = styled.button`
 
         align-self: flex-start;
 
-        padding: 10px 43px;
-
-
+        
+        
         justify-content: center;
-   
-        padding: 10 20PX;
+        
+        /* padding: 10px 43px; */
+        padding: 12px 16px;
+
         color: #383838;
-        font-size: 20px;
+        font-size: 16px;
         
         
 

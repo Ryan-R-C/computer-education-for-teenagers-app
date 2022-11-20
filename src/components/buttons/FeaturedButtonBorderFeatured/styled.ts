@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Button = styled.button`
         align-items: center;
         background-color: #FFFFFF;
-        border-width: 1px;
+        border-width: 1.5px;
         border-style: solid;
-        border-color: #D9D9D9;
+        border-color: #a6a6a6;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
         display: flex;
         flex-direction: row;
@@ -14,9 +14,11 @@ export const Button = styled.button`
         align-self: flex-start;
         justify-content: center;
         color: #383838;
-        padding: 10px 43px;
-        font-size: 20px;
+        font-size: 16px;
         cursor: pointer;
+        /* padding: 10px 43px; */
+        padding: 12px 16px;
+
         
         border-radius: ${(props) => {
                 if(props.theme === 'left')

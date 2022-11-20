@@ -42,7 +42,8 @@ export const Container = styled.button`
                 height: 90%;
 
 
-                object-fit: contain;
+                /* object-fit: contain; */
+                object-fit: cover;
         }
 
         ${(props) => {

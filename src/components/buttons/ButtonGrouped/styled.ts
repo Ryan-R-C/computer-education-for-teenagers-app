@@ -7,12 +7,12 @@ export const Button = styled.button`
         display: flex;
         flex-direction: row;
         gap: 10px;
-        border-width: 1px;
+        border-width: 1.5px;
         border-style: solid;
-
+        border-color: #a6a6a6;
         width: 50%;
 
-        max-width: 400px;
+        /* max-width: 400px; */
 
         position: relative;
         cursor: pointer;
@@ -20,9 +20,12 @@ export const Button = styled.button`
         align-self: flex-start;
         
         justify-content: center;
-        padding: 4px 40px;
         color: #FFFFFF !important;
-        font-size: 20px;
+        font-size: 16px;
+        /* padding: 4px 40px; */
+
+        padding: 8px 16px;
+
 
         border-radius: ${(props) => {
                 if(props.theme.includes('left'))
@@ -33,12 +36,11 @@ export const Button = styled.button`
                         return `10px;`
         }
         };
-
         ${(props) => {
                 if(props.theme.includes('white'))
                         return `
                         background-color: #FFFFFF;
-                        border-color: #D9D9D9;
+                        border-color: #a6a6a6;
                         color: #383838 !important;
                         `
                 else 
