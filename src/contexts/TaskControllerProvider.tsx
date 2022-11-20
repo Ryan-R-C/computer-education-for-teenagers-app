@@ -1,7 +1,11 @@
 import { createContext, useState, useEffect, useContext } from "react";
 // import FitCultural from "service/fitCultural/fitCultural";
 
+import UserScoreService from "../service/UserScores";
+
+
 import { ReactProps, QuestionProps, TaskProps } from "../types";
+import { getTaskId, getUserId, getUserScore, setUserScore } from "../utils/localStorage";
 
 export const TaskControllerContext = createContext({});
 
@@ -14,25 +18,32 @@ export default function TaskControllerProvider({ children }: ReactProps) {
 
 
   const [loadingSubmit, setLoadingSubmit] = useState(false);
+  
 
+  async function handleSubmitTasks(){
+    const userId = getUserId()
+    const taskId = getTaskId()
 
-  async function findFitCultural(_id: string) {
-    try {
-      setLoadingSubmit(true);
-      // const selectedFitCultural = await FitCultural.find(_id);
-      const selectedFitCultural = {};
-
-      return selectedFitCultural;
-    } catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+    const userScore = {
+      hits: hits,
+      misses: errors,
+      user: userId,
+      task: taskId,
+      level: 1
     }
+
+    const updatedUserScore = await UserScoreService.createOrUpdate(userScore)
+
+    if(!!updatedUserScore) setUserScore(userScore)
+
+    setLoadingSubmit(false)
+
   }
 
   return (
     <TaskControllerContext.Provider
       value={{
-        findFitCultural,
+        handleSubmitTasks,
         isCorrectAnswer,setIsCorrectAnswer,
         loadingSubmit, setLoadingSubmit,
         currentQuestion, setCurrentQuestion,
@@ -51,7 +62,7 @@ export function useTaskController() {
   const context = useContext(TaskControllerContext);
 
   const {
-    findFitCultural,
+    handleSubmitTasks,
     isCorrectAnswer,setIsCorrectAnswer,
     loadingSubmit, setLoadingSubmit,
     currentQuestion, setCurrentQuestion,
@@ -61,7 +72,7 @@ export function useTaskController() {
   }: any = context;
 
   return {
-    findFitCultural,
+    handleSubmitTasks,
     isCorrectAnswer,setIsCorrectAnswer,
     loadingSubmit, setLoadingSubmit,
     currentQuestion, setCurrentQuestion,
