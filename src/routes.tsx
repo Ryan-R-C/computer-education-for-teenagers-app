@@ -15,15 +15,11 @@ import UserScoresProvider from "./contexts/UserScoresProvider";
 export const footerProps = [
   {
     icon: "HomeIcon",
-    path: "/dashboard/",
+    path: "/",
   },
   {
     icon: "TaskSquareIcon",
-    path: "/last-task/"
-  },
-  {
-    icon: "ProfileIcon",
-    path: "/profile/"
+    path: "/dashboard/"
   },
 ]
 
