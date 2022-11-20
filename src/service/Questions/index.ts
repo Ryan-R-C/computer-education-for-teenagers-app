@@ -6,9 +6,7 @@ export default class TaskService {
   static async create(data) {
     // console.log()
     const response = await api
-      .post('questions', {
-        data,
-      })
+      .post('questions', data)
 
       /* .catch(() => {
         servidorErrorMessage()
@@ -25,9 +23,7 @@ export default class TaskService {
   //= =========================================================================================================
   static async update(_id, data) {
     const response = await api
-      .put(`questions/${_id}`, {
-        data,
-      })
+      .put(`questions/${_id}`,data)
       /* .catch(() => {
         servidorErrorMessage()
       }) */

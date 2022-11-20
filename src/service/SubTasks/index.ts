@@ -6,9 +6,7 @@ export default class TaskService {
   static async create(data) {
     // console.log()
     const response = await api
-      .post('subtasks', {
-        data,
-      })
+      .post('subtasks', data)
 
       /* .catch(() => {
         servidorErrorMessage()
@@ -25,9 +23,7 @@ export default class TaskService {
   //= =========================================================================================================
   static async update(_id, data) {
     const response = await api
-      .put(`subtasks/${_id}`, {
-        data,
-      })
+      .put(`subtasks/${_id}`,data)
       /* .catch(() => {
         servidorErrorMessage()
       }) */

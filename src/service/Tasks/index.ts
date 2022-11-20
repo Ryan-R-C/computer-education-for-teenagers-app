@@ -6,9 +6,7 @@ export default class TaskService {
   static async create(data) {
     // console.log()
     const response = await api
-      .post('tasks', {
-        data,
-      })
+      .post('tasks', data)
 
       /* .catch(() => {
         servidorErrorMessage()
@@ -25,9 +23,7 @@ export default class TaskService {
   //= =========================================================================================================
   static async update(_id, data) {
     const response = await api
-      .put(`tasks/${_id}`, {
-        data,
-      })
+      .put(`tasks/${_id}`,data)
       /* .catch(() => {
         servidorErrorMessage()
       }) */
@@ -104,6 +100,18 @@ export default class TaskService {
   static async find(_id) {
     const response = await api
       .get(`tasks/${_id}`)
+
+      /* .catch(() => {
+        servidorErrorMessage()
+      }) */
+
+    return response.data
+  }
+
+
+  static async listAssociation(_userId) {
+    const response = await api
+      .get(`tasks-score/${_userId}`)
 
       /* .catch(() => {
         servidorErrorMessage()

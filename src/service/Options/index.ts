@@ -6,9 +6,7 @@ export default class TaskService {
   static async create(data) {
     // console.log()
     const response = await api
-      .post('options', {
-        data,
-      })
+      .post('users', data)
 
       /* .catch(() => {
         servidorErrorMessage()
@@ -25,9 +23,7 @@ export default class TaskService {
   //= =========================================================================================================
   static async update(_id, data) {
     const response = await api
-      .put(`options/${_id}`, {
-        data,
-      })
+      .put(`users/${_id}`,data)
       /* .catch(() => {
         servidorErrorMessage()
       }) */
@@ -43,7 +39,7 @@ export default class TaskService {
   //= =========================================================================================================
   static async delete(_id) {
     const response = await api
-      .delete(`options/${_id}`)
+      .delete(`users/${_id}`)
       .then((res) => {
         const status = res.status
         const mensagemOk = 'Task apagada com sucesso!'
@@ -62,7 +58,7 @@ export default class TaskService {
   //= =========================================================================================================
   static async list() {
     const response = await api
-    .get('options')
+    .get('users')
    /* .catch(() => {
         servidorErrorMessage()
       }) */
@@ -77,7 +73,7 @@ export default class TaskService {
 
   static async listWithFilter(filter, value) {
     const response = await api
-      .get(`options?filter%5B${filter}%5D=${value}`)
+      .get(`users?filter%5B${filter}%5D=${value}`)
       /* .catch(() => {
         servidorErrorMessage()
       }) */
@@ -90,7 +86,7 @@ export default class TaskService {
   //= =========================================================================================================
   static async listWithManyFilters(filters) {
     const response = await api
-    .get(`options?${filters}`)
+    .get(`users?${filters}`)
       /* .catch(() => {
         servidorErrorMessage()
       }) */
@@ -103,7 +99,7 @@ export default class TaskService {
   //= =========================================================================================================
   static async find(_id) {
     const response = await api
-      .get(`options/${_id}`)
+      .get(`users/${_id}`)
 
       /* .catch(() => {
         servidorErrorMessage()
