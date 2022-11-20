@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import * as S from "./Dashboard.styled";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -13,130 +13,95 @@ import PlayIcon from "../../components/icons/PlayIcon";
 import DefaultButtonGrouped from "../../components/buttons/ButtonGrouped";
 import HeaderBar from "../../components/boxes/header/HeaderBar";
 import Footer from "../../components/boxes/Footer";
+import { useTasks } from "../../contexts/TaskProvider";
+import TaskList from "./components/TaskList";
 
-var tasks: TaskProps[] = [
-  {
-    title: "Arquitetura de computadores",
-    tasksQuantity: 10, // isFinished = tasksQuantity == tasksFinished
-    tasksFinished: 10,
-    icon: "CpuIcon",
-    id: "1",
-  },
-  {
-    title: "Lógica",
-    tasksQuantity: 12, // isFinished = tasksQuantity == tasksFinished
-    tasksFinished: 8,
-    icon: "ConnectionIcon",
-    id: "1",
-  },
-  {
-    title: "História da Internet",
-    tasksQuantity: 10, // isFinished = tasksQuantity == tasksFinished
-    tasksFinished: 0,
-    icon: "WebIcon",
-    id: "1",
-  },
-]
 
-export default function Dashboard( {}) {
+export default function Dashboard({ }) {
+
+  const {
+    tasks,
+    loadTaskAssociated,
+  } = useTasks()
+
   const [activeMenu, setActiveMenu] = useState(0);
-  const [tasksAvaliable, setTasksAvaliable] = useState<TaskProps[]>(handleFilterTasks(false));
+  const [tasksAvaliable, setTasksAvaliable] = useState<TaskProps[]>([]);
 
 
-  function handleFilterTasks(isFinished){
-    const filteredTasks: TaskProps[] = tasks.filter(
-      ({tasksQuantity, tasksFinished}) =>  (tasksQuantity === tasksFinished) === isFinished
+  function handleFilterTasks(isFinished, tasksList: TaskProps[]) {
+    const filteredTasks: TaskProps[] = tasksList.filter(
+      ({ subTasks, userScore }) => (subTasks?.length <= userScore[0]?.level) === isFinished
     )
+    
     return filteredTasks
-  
   }
 
-  function handleToggleMenu(menuItem: number){
+  function handleToggleMenu(menuItem: number) {
     setActiveMenu(menuItem)
 
     // sets the default unfinished tasks
     let isFinished = false
 
     // it is explicitly finished tasks it is sets as true
-    if(menuItem === 1) isFinished = true
-    
-    const finishedTasks: TaskProps[] = handleFilterTasks(isFinished)
+    if (menuItem === 1) isFinished = true
 
-    return setTasksAvaliable(finishedTasks);  
+    const finishedTasks: TaskProps[] = handleFilterTasks(isFinished, tasks)
+
+    return setTasksAvaliable(finishedTasks);
 
   }
 
+  async function handleLoadTasks(){
+    const allTasks = await loadTaskAssociated()
 
+    const unfinishedTasks = handleFilterTasks(false, allTasks)
+
+    setTasksAvaliable(unfinishedTasks)
+  }
+
+  useEffect(
+    () => {
+      handleLoadTasks()
+    }, []
+  )
+
+
+  const Test = () => <>
+      <TaskList tasksAvaliable={tasksAvaliable} />
+    </>
   
+
 
 
   return (
     <S.Container>
       <HeaderBar>
-        
+
       </HeaderBar>
       <S.StepContainer>
-          <DefaultButtonGrouped
-            onClick={() => handleToggleMenu(0)}
-            variant={`left ${ activeMenu !== 0 ? 'white' : ''}`}
-            >
-            Pendentes
-          </DefaultButtonGrouped>
-          <DefaultButtonGrouped
-            onClick={() => handleToggleMenu(1)}
-            variant={`right ${ activeMenu !== 1 ? 'white' : ''}`}
-            >
-            Finalizadas
-          </DefaultButtonGrouped>
+        <DefaultButtonGrouped
+          onClick={() => handleToggleMenu(0)}
+          variant={`left ${activeMenu !== 0 ? 'white' : ''}`}
+        >
+          Pendentes
+        </DefaultButtonGrouped>
+        <DefaultButtonGrouped
+          onClick={() => handleToggleMenu(1)}
+          variant={`right ${activeMenu !== 1 ? 'white' : ''}`}
+        >
+          Finalizadas
+        </DefaultButtonGrouped>
       </S.StepContainer>
       <>
-        <S.TaskContainer>
-          {
-            tasksAvaliable?.map(
-              ({
-                title,
-                tasksQuantity,
-                tasksFinished,
-                icon,
-                id,
-              },
-              index
-              ) => {
-                const Icon = Icons[icon]
 
-                return (
-                  <CardContainer key={id + index}>
-                  <S.TitleContainer>
-                    <Link to={`/explanation-task/${id}`}>
-                      <S.IconContainer>
-                        <Icon  size={66} />
-                      </S.IconContainer>
-                    </Link>
-                    <p>
-                      {
-                        title
-                      }
-                    </p>
-                  </S.TitleContainer>
 
-                  <S.BarContainer>
-                    <div>
-                      <Bar percentage={tasksFinished / tasksQuantity * 100}/>
-                      <p>{tasksFinished}/{tasksQuantity}</p>
-                    </div>
-                    <Link to={`/explanation-task/${id}`}>
-                      <PlayIcon size={50}/>
-                    </Link>
-                  </S.BarContainer>
-                </CardContainer>
-              )              
-              }
-              )
-          }
 
-        </S.TaskContainer>
+      <TaskList tasksAvaliable={tasksAvaliable} />
+
+
+
       </>
-      <Footer/>
+      <Footer />
     </S.Container>
 
   );
