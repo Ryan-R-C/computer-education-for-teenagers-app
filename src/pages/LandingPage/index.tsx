@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import * as S from "./LandingPage.styled";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -7,25 +7,39 @@ import Title from '../../components/typography/Title';
 import astronaut from '../../assets/astronaut.png'
 import Step from "../../components/buttons/Step";
 import DefaultButtonEmphasis from "../../components/buttons/DefaultButtonEmphasis";
+import { useUsers } from "../../contexts/UsersProvider";
 
-export default function LandingPage( {}) {
+export default function LandingPage({}) {
+
+  const {
+    findOrCreateUser,
+  } = useUsers()
+
+  async function handleSetOrFindData(){
+    await findOrCreateUser()
+  }
+
+  useEffect(
+    () => {
+      handleSetOrFindData()
+    }, []
+  )
+
+
   const [step, setStep] = useState(0);
-
-
-  const navigate = useNavigate();
 
   const stepsMessages = [
     {
-      title: "Dolly Guaraná",
-      description: "Beba muito líquido"
+      title: "Computação",
+      description: "Aprenda computação de forma simples! Você pode aprender tópicos importântes para a computação!",
+    },
+    { 
+      title: "História",
+      description: "Conhece um pouco da história da computação e da internet? Sabia do importânte papel feminino na computação? Conhece de onde veio as ideias do primeiro computador caseiro?"
     },
     {
-      title: "Dolly, O melhor!",
-      description: "Cuidado com o sol"
-    },
-    {
-      title: "Dolly!!",
-      description: "Pratique muito esporte"
+      title: "Arquitetura",
+      description: "Você entende quais são os componentes da Arquitetura de computadores? Sabe o que faz a memória RAM, memória ROM e a CPU?"
     },
   ]
 
