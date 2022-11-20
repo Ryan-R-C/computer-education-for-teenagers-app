@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import TaskService from "../service/Tasks";
 
 import { TaskProps, ReactProps } from "../types";
+import { getUserId } from "../utils/localStorage";
 
 export const TasksContext = createContext({});
 
@@ -15,6 +16,17 @@ export default function TasksProvider({ children }: ReactProps) {
 
     
     const allTask = await TaskService.listWithManyFilters(filter);
+    setTask(allTask);
+
+    return allTask;
+  }
+
+  async function loadTaskAssociated(filter?: string) {
+    setLoadingSubmit(false);
+
+    const userId = getUserId()
+    
+    const allTask = await TaskService.listAssociation(userId);
     setTask(allTask);
 
     return allTask;
@@ -85,6 +97,7 @@ export default function TasksProvider({ children }: ReactProps) {
         tasks,
         setTask,
         loadTask,
+        loadTaskAssociated,
         createTask,
         findTask,
         updateTask,
@@ -105,6 +118,7 @@ export function useTasks() {
     tasks,
     setTask,
     loadTask,
+    loadTaskAssociated,
     createTask,
     findTask,
     updateTask,
@@ -117,6 +131,7 @@ export function useTasks() {
     tasks,
     setTask,
     loadTask,
+    loadTaskAssociated,
     createTask,
     findTask,
     updateTask,
