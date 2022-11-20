@@ -61,7 +61,7 @@ export const ImageContainer = styled.div`
 width: 100%;
 height: calc(53vh - 7px);
 width: 60%;
-margin: auto auto;
+margin: auto auto -5% auto;
 /* padding: 10% 0; */
 
 img{
