@@ -40,8 +40,7 @@ export const WelcomeHolder = styled.div`
 
   p {
     width: 80%;
-    margin: 0 auto;
-    height: 25vh;
+    margin: 20px auto;
   }
 
 
