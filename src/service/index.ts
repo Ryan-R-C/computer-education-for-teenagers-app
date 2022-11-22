@@ -2,9 +2,10 @@ import axios from "axios";
 
 const {
     REACT_APP_ENVNODE,
-    REACT_APP_BACKENDURL
+    // REACT_APP_BACKENDURL
 } = process.env
 
+const REACT_APP_BACKENDURL = "https://computer-education-backend-production.up.railway.app/"
 
 const backendUrl = REACT_APP_ENVNODE == "development" ? `http://localhost:8000` : REACT_APP_BACKENDURL
 
