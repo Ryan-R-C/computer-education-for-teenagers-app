@@ -6,11 +6,9 @@ const {
 } = process.env
 
 
-const backendUrl = REACT_APP_ENVNODE == "development" ? `http://localhost` : REACT_APP_BACKENDURL
+const backendUrl = REACT_APP_ENVNODE == "development" ? `http://localhost:8000` : REACT_APP_BACKENDURL
 
-const port = process.env.REACT_APP_BACKEND_PORT || "8000";
-
-export const ip = `${backendUrl}:${port}`;
+export const ip = `${backendUrl}`;
 
 console.log(ip)
 
