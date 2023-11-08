@@ -59,7 +59,7 @@ export const ButtonsContainer = styled.div`
 
 export const ImageContainer = styled.div`
 width: 100%;
-height: 50vh;
+height: 40vh;
 width: 60%;
 margin: auto auto -5% auto;
 /* padding: 10% 0; */
