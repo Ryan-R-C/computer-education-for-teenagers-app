@@ -221,11 +221,17 @@ justify-content: center;
 position: relative;
 flex-direction: column;
 
-/* padding: 1rem 0% 1rem 0% ; */
-/* padding-bottom: 4.0rem; */
-/* padding-top: 2.5rem; */
 
-/* height: 11rem; */
+
+${(props) => {
+  if(props?.theme)
+      return`
+      position: fixed;
+      bottom: 25px;
+      left: 0;
+      `
+  }
+};    
 
 button {
   z-index: 999;
