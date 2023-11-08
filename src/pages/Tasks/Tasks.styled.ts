@@ -21,7 +21,8 @@ export const Container = styled.div`
 
 
 export const SubContainer = styled.div`
-  height: calc(100vh - 53px);
+  min-height: calc(-53px + 100vh);
+  height: fit-content;
 `;
 
 
