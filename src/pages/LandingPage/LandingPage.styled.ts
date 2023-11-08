@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   overflow: hidden;
 
@@ -23,7 +23,7 @@ export const WelcomeHolder = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: 60%;
 
   h1 {
     padding-bottom: 16px !important;
@@ -59,7 +59,7 @@ export const ButtonsContainer = styled.div`
 
 export const ImageContainer = styled.div`
 width: 100%;
-height: calc(53vh - 7px);
+height: 50vh;
 width: 60%;
 margin: auto auto -5% auto;
 /* padding: 10% 0; */
