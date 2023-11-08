@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 100vh;
+  height: calc(100vh - 53px);
   width: 100vw;
   padding: 24px 16px;
   /* justify-content: space-around; */
