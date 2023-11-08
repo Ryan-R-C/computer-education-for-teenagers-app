@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: calc(100vh - 53px);
+  height: 100vh;
   width: 100vw;
   padding: 24px 16px;
   /* justify-content: space-around; */
@@ -17,6 +17,11 @@ export const Container = styled.div`
      color: #595959;
   }
 
+`;
+
+
+export const SubContainer = styled.div`
+  height: calc(100vh - 53px);
 `;
 
 

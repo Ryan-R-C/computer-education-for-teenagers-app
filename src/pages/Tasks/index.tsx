@@ -122,99 +122,89 @@ export default function Tasks({ }) {
 
   return (
     <S.Container>
-      <HeaderBar>
-        <Bar percentage={tasksDone / taksAvaliable * 100} />
-
-        <S.ScoreContainer>
-
-          <S.ItemScore>
-            <UncheckIcon />
-            {
-              errors
-            }
-          </S.ItemScore>
-
-          <S.ItemScore>
-            <CheckIcon />
-            {
-              hits
-            }
-          </S.ItemScore>
-
-        </S.ScoreContainer>
-
-      </HeaderBar>
-
-      <div>
-        <S.TaskContainer>
-          <S.AnswerContainer>
-            {
-              tasks?.map(
-                (task, i) => {
-                  const Task = TaskComponentProps[task?.type!]
-                  
-                  return (
-                      <>
-                      {
-                        i == currentTask && <Task task={task} key={i}>
-                        </Task>
-                      }
-                    </>
-                  )
-                }
-              )
-            }
-
-            {/* Manual Set */}
-            {/* <SelectTaskComponent task={task} /> */}
-            {/* <SelectOptionComponent task={task}/> */}
-            {/* <SelectImageOptionComponent task={taskImage}/> */}
-
-          </S.AnswerContainer>
-        </S.TaskContainer>
-      </div>
-
-      <S.ResponseContainer theme={`${ loadingSubmit && `show ${isCorrectAnswer ? `correct` : `wrong`} `}`}>
-        <div className="messageContainer">
-            {
-             isCorrectAnswer ? (
-              <div>
-                <Title>
-                  Certo!
-                </Title>
-              </div>
-              ) : (
+      <S.SubContainer>
+        <HeaderBar>
+          <Bar percentage={tasksDone / taksAvaliable * 100} />
+          <S.ScoreContainer>
+            <S.ItemScore>
+              <UncheckIcon />
+              {
+                errors
+              }
+            </S.ItemScore>
+            <S.ItemScore>
+              <CheckIcon />
+              {
+                hits
+              }
+            </S.ItemScore>
+          </S.ScoreContainer>
+        </HeaderBar>
+        <div>
+          <S.TaskContainer>
+            <S.AnswerContainer>
+              {
+                tasks?.map(
+                  (task, i) => {
+                    const Task = TaskComponentProps[task?.type!]
+        
+                    return (
+                        <>
+                        {
+                          i == currentTask && <Task task={task} key={i}>
+                          </Task>
+                        }
+                      </>
+                    )
+                  }
+                )
+              }
+              {/* Manual Set */}
+              {/* <SelectTaskComponent task={task} /> */}
+              {/* <SelectOptionComponent task={task}/> */}
+              {/* <SelectImageOptionComponent task={taskImage}/> */}
+            </S.AnswerContainer>
+          </S.TaskContainer>
+        </div>
+        <S.ResponseContainer theme={`${ loadingSubmit && `show ${isCorrectAnswer ? `correct` : `wrong`} `}`}>
+          <div className="messageContainer">
+              {
+               isCorrectAnswer ? (
                 <div>
-                <Title>
-                  Resposta correta:
-                </Title>
-                  <p>
-                    {
-                      currentQuestion?.answer
-                    }
-                  </p>
+                  <Title>
+                    Certo!
+                  </Title>
                 </div>
-              )
-            }
-          <div className="iconsContainer">
-            <MessageIcon color="white"/>
-            <FlagIcon    color="white"/>
-          </div>
-          </div>
-      </S.ResponseContainer>
-
-      <S.SubmitContainer>
-
-
+                ) : (
+                  <div>
+                  <Title>
+                    Resposta correta:
+                  </Title>
+                    <p>
+                      {
+                        currentQuestion?.answer
+                      }
+                    </p>
+                  </div>
+                )
+              }
+            <div className="iconsContainer">
+              <MessageIcon color="white"/>
+              <FlagIcon    color="white"/>
+            </div>
+            </div>
+        </S.ResponseContainer>
+        <S.SubmitContainer>
         
         
-        <DefaultButtonEmphasis
-        theme={(!isCorrectAnswer &&  loadingSubmit) && 'error' }
-        onClick={() => handleNextTask()}>
-          Responder
-        </DefaultButtonEmphasis>
+          <DefaultButtonEmphasis
+          theme={(!isCorrectAnswer &&  loadingSubmit) && 'error' }
+          onClick={() => handleNextTask()}>
+            Responder
+          </DefaultButtonEmphasis>
         
-      </S.SubmitContainer>
+        </S.SubmitContainer>
+      </S.SubContainer>
     </S.Container>
 
   );
