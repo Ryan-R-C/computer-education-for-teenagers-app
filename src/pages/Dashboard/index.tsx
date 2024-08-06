@@ -65,14 +65,6 @@ export default function Dashboard({ }) {
     }, []
   )
 
-
-  const Test = () => <>
-      <TaskList tasksAvaliable={tasksAvaliable} />
-    </>
-  
-
-
-
   return (
     <S.Container>
       <HeaderBar>

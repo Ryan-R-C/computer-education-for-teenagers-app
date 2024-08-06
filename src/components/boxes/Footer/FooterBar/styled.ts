@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const FooterBar= styled.div`
+        z-index: 99 !important;
         width: 100%;
         /* margin: 220px 5%; */
         display: flex;
