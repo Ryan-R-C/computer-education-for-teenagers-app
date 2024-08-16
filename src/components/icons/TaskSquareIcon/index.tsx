@@ -5,7 +5,6 @@ import { colors } from '../../../globalStyle'
 import { ButtonProps } from '../../../types';
 
 const TaskSquareIcon = ({size, color, variant}: ButtonProps) => {
-  // then use it as a normal React Component
   return(
     <TaskSquare
     size={size || "32"}

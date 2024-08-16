@@ -62,7 +62,6 @@ width: 100%;
 height: 40vh;
 width: 60%;
 margin: auto auto -5% auto;
-/* padding: 10% 0; */
 
 img{
   height: 100%;

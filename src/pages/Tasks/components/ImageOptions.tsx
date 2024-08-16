@@ -29,7 +29,7 @@ export default function SelectImageOptionComponent({ task }: TaskComponentProps)
 
     const allSelectedOptions = selectedOptions
 
-    const isSelectedaAlready = allSelectedOptions == optionId
+    const isSelectedaAlready = allSelectedOptions ===optionId
 
     if (isSelectedaAlready) return;
 
@@ -63,13 +63,12 @@ export default function SelectImageOptionComponent({ task }: TaskComponentProps)
       <div>
         <S.TaskContainer>
           <S.AnswerContainer>
-            {/* Options list */}
             <S.OptionsContainer>
               {
                 task?.options?.map(
                   ({ title, _id, image, isCorrect }) => (
                     <>
-                      <ImageButtonOption image={image} key={_id} isSelected={selectedOptions == _id} onClick={() => handleCheckIsCorrect(_id!, isCorrect!)}>
+                      <ImageButtonOption image={image} key={_id} isSelected={selectedOptions ===_id} onClick={() => handleCheckIsCorrect(_id!, isCorrect!)}>
                         {title}
                       </ImageButtonOption>
                     </>

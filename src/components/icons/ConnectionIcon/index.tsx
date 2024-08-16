@@ -6,7 +6,6 @@ import { Hierarchy2, Hierarchy } from 'iconsax-react'
 import { colors } from '../../../globalStyle'
 
 const ConnectionIcon = ({ size, color, variant }: ButtonProps) => {
-  // then use it as a normal React Component
   return (
     <S.FlexConnection>
       <Hierarchy

@@ -6,7 +6,6 @@ import { ButtonProps } from '../../../types';
 
 
 const ArrowBackIcon = ({size, color, variant}: ButtonProps) => {
-  // then use it as a normal React Component
   return(
     <ArrowCircleLeft
     size={size || "32"}

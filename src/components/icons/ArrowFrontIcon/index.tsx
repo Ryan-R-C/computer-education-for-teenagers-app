@@ -5,7 +5,6 @@ import { colors } from '../../../globalStyle'
 import { ButtonProps } from '../../../types';
 
 const ArrowFrontIcon = ({size, color, variant}: ButtonProps) => {
-  // then use it as a normal React Component
   return(
     <ArrowCircleRight
     size={size || "32"}

@@ -23,7 +23,7 @@ export default function SelectOptionComponent({ task }: TaskComponentProps) {
 
     const allSelectedOptions = selectedOptions
 
-    const isSelectedaAlready = allSelectedOptions == optionId
+    const isSelectedaAlready = allSelectedOptions ===optionId
 
 
     if (isSelectedaAlready) return;
@@ -64,13 +64,12 @@ export default function SelectOptionComponent({ task }: TaskComponentProps) {
         </Title>
       </S.Question>
 
-      {/* Options list */}
       <S.OptionsContainer>
         {
           task?.options?.map(
             ({ title, _id, isCorrect }) => (
               <S.ButtonsContainer>
-                <ButtonOption key={_id} isSelected={selectedOptions == _id} onClick={() => handleCheckIsCorrect(_id!, isCorrect!)}>
+                <ButtonOption key={_id} isSelected={selectedOptions ===_id} onClick={() => handleCheckIsCorrect(_id!, isCorrect!)}>
                   {title}
                 </ButtonOption>
               </S.ButtonsContainer>

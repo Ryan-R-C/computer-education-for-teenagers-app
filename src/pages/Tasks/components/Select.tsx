@@ -19,7 +19,7 @@ export default function SelectTaskComponent({ task }: TaskComponentProps) {
   const [selectedOptions, setSelectedOptions] = useState<(string | number)[]>([]);
   
   function getSelectedOptionValue(option: string | number) {
-    const optionSelected: OptionProps[] | undefined = task?.options?.filter(element => element?._id == option)
+    const optionSelected: OptionProps[] | undefined = task?.options?.filter(element => element?._id ===option)
 
     if (!optionSelected) return;
 
@@ -70,7 +70,7 @@ export default function SelectTaskComponent({ task }: TaskComponentProps) {
   function handleCheckIsCorrect(optionIds: (number | string)[]) {
 
     const totalCorrects: OptionProps[] | undefined = task.options?.filter(
-      (option) => option.isCorrect == true
+      (option) => option.isCorrect ===true
     )
       .sort((previous: OptionProps, next: OptionProps) => previous!._id! > next!._id! ? 1 : next!._id! > previous!._id! ? -1 : 0)
 
@@ -124,7 +124,6 @@ export default function SelectTaskComponent({ task }: TaskComponentProps) {
         </S.OptionsContainer>
       </S.OptionsSelected>
 
-      {/* Options list */}
       <S.OptionsContainer>
         {
           task?.options?.map(

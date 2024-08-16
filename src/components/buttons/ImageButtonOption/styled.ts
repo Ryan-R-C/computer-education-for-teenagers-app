@@ -10,13 +10,11 @@ export const Container = styled.button`
         border-width: 1.5px;
         border-style: solid;
 
-        /* width: fit-content; */
         width: 40%;
         height: 100%;
 
         max-width: 400px;
 
-        /* position: relative; */
         cursor: pointer;
         
         align-self: flex-start;
@@ -26,7 +24,6 @@ export const Container = styled.button`
         color: #FFFFFF !important;
         font-size: 16px;
         border-radius: 20px;
-        /* padding: 1%; */
         height: 188px;
         width: 188px;
         padding: 12px 16px;
@@ -41,8 +38,6 @@ export const Container = styled.button`
                 width: 100%;
                 height: 90%;
 
-
-                /* object-fit: contain; */
                 object-fit: cover;
         }
 
@@ -79,6 +74,3 @@ export const Container = styled.button`
         }
         };
 `
-
-
-  /*  */

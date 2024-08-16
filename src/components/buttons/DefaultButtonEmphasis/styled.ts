@@ -16,7 +16,6 @@ export const Button = styled.button`
         justify-content: center;
         color: #FFFFFF !important;
         font-size: 22px;
-        /* padding: 10px 43px; */
         padding: 16px 43px;
 
 

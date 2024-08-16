@@ -64,12 +64,6 @@ export default function Tasks({ }) {
   const [taksAvaliable, setTaksAvaliable] = useState<number>(1);
   const [tasksDone, setTasksDone] = useState<number>(0);
 
-
-  // Criar um componente baseado em todas as funcionalidades ao invés de criar um global cheio de ifs
-  // em caso de select
-  // apenas 100% correto caso todos os elementos selecionados forem verdadeiros
-
-
   async function handleNextTask() {
     if(!loadingSubmit) return setLoadingSubmit(true);
 
@@ -87,8 +81,6 @@ export default function Tasks({ }) {
     }
 
     else {
-      // terminar a atividade haha
-
       await handleSubmitTasks()
 
       navigate(
@@ -151,7 +143,7 @@ export default function Tasks({ }) {
                     return (
                         <>
                         {
-                          i == currentTask && <Task task={task} key={i}>
+                          i ===currentTask && <Task task={task} key={i}>
                           </Task>
                         }
                       </>
@@ -159,10 +151,6 @@ export default function Tasks({ }) {
                   }
                 )
               }
-              {/* Manual Set */}
-              {/* <SelectTaskComponent task={task} /> */}
-              {/* <SelectOptionComponent task={task}/> */}
-              {/* <SelectImageOptionComponent task={taskImage}/> */}
             </S.AnswerContainer>
           </S.TaskContainer>
         </div>

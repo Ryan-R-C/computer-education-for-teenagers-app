@@ -39,9 +39,6 @@ const RoutesApp = () => {
                             <Route path="/explanation-task/:_id" element={<TaskExplanation />} />
                             <Route path="/task/:_id" element={<Tasks />} />
                             <Route path="/test/" element={<Test />} />
-                            {/*
-                            <Route path="/cadastro" element={<SignUp />} />
-                            */}
                           </Routes>
                         </BrowserRouter>
                       </TaskControllerProvider>

@@ -67,14 +67,13 @@ export interface ContainerProps extends ReactProps {
 export interface TaskProps  {
   
   title:         string,
-  tasksQuantity: number, // isFinished = tasksQuantity == tasksFinished
+  tasksQuantity: number, // isFinished = tasksQuantity === tasksFinished
   tasksFinished: number,
   icon:          string,
   _id:            string,
 
   tasks?: QuestionProps[]  
   subTasks: string[];
-  // subTasks: QuestionProps[] 
   userScore: UserScoreProps[]
   
 }

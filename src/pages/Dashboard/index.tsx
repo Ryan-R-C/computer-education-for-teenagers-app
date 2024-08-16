@@ -39,10 +39,8 @@ export default function Dashboard({ }) {
   function handleToggleMenu(menuItem: number) {
     setActiveMenu(menuItem)
 
-    // sets the default unfinished tasks
     let isFinished = false
 
-    // it is explicitly finished tasks it is sets as true
     if (menuItem === 1) isFinished = true
 
     const finishedTasks: TaskProps[] = handleFilterTasks(isFinished, tasks)

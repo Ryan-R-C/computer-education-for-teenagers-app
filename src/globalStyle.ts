@@ -24,7 +24,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: ${theme.font.family} !important;
     color: ${theme.colors.darkGray};
-    /* overflow-x: hidden; */
   }
 
 p {

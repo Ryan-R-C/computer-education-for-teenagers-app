@@ -4,14 +4,11 @@ export const Container = styled.div`
   min-height: 100vh;
   width: 100vw;
   padding: 24px 16px;
-  /* justify-content: space-around; */
 
   background: linear-gradient(180deg, #FFFFFF 0%, #EDEDED 26.99%, #ECECEC 28.17%);
 
   display: flex;
-  /* justify-content: space-between; */
   flex-direction: column;
-  /* gap: 20px; */
 
   & *{
      color: #595959;
@@ -60,8 +57,6 @@ export const Question = styled.div`
 margin: 0.1% auto;
 width:  85%;
 height: 33%;
-/* max-width: 50vw; */
-/* max-height: 40vh; */
 text-align: center;
 
 .space {
@@ -75,7 +70,6 @@ height: 100%;
 margin-bottom: 10px;
 
 img{
-  /* width: 100%; */
   height: 100%;
 
   object-fit: contain;
@@ -146,7 +140,6 @@ right: 0;
 display: flex;
 align-items: center;
 justify-content: center;
-/* padding: 10$%; */
 
 display: none;
 
@@ -212,7 +205,6 @@ ${(props) => {
 export const SubmitContainer = styled.div`
 margin: 0 auto;
 margin-top: auto;
-/* padding: 0 0% 5vh 0% ; */
 
 width: 100%;
 display: flex;

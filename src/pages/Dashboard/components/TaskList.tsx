@@ -52,8 +52,6 @@ export default function TaskList({ tasksAvaliable }: TaskPropsChildren) {
                 const tasksQuantity = subTasks?.length
                 const tasksFinished =  getTasksFinished(level, tasksQuantity);
 
-
-                {/* PEGAR A LENGHT DAS TASKS FINALIZADAS, CASO FOR IGUAL AO SUBTASKS DIMINUIR 1 */}
                 const currentSubtaskId: string = (subTasks[tasksFinished] || subTasks[tasksFinished - 1])
 
                 return (

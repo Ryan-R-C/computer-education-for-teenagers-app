@@ -1,9 +1,3 @@
-// import './App.css';
-
-import TEST from './assets/background.svg';
-
-// buttons:
-import ArrowBackIcon from '../../components/icons/ArrowBackIcon';
 import ArrowFrontIcon from '../../components/icons/ArrowFrontIcon';
 import CheckIcon from '../../components/icons/CheckIcon';
 import ConnectionIcon from '../../components/icons/ConnectionIcon';

@@ -4,17 +4,8 @@ import api from '../index'
 
 export default class TaskService {
   static async create(data) {
-    // console.log()
     const response = await api
       .post('subtasks', data)
-
-      /* .catch(() => {
-        servidorErrorMessage()
-      }) */
-
-    const mensagemOk = 'Task criada com sucesso!'
-    const mensagemNaoOK = 'Revise seus dados :('
-    // responseHandler(response.status, mensagemOk, mensagemNaoOK)
 
     const responseData = response.data
     return responseData
@@ -24,13 +15,6 @@ export default class TaskService {
   static async update(_id, data) {
     const response = await api
       .put(`subtasks/${_id}`,data)
-      /* .catch(() => {
-        servidorErrorMessage()
-      }) */
-    const mensagemOk = 'Task alterada com sucesso!'
-    const mensagemNaoOK = 'Revise seus dados :('
-    // responseHandler(response.status, mensagemOk, mensagemNaoOK)
-
     const responseData = response.data
 
     return responseData
@@ -40,18 +24,7 @@ export default class TaskService {
   static async delete(_id) {
     const response = await api
       .delete(`subtasks/${_id}`)
-      .then((res) => {
-        const status = res.status
-        const mensagemOk = 'Task apagada com sucesso!'
-        const mensagemNaoOK = 'Algo deu errado :('
-
-        // responseHandler(status, mensagemOk, mensagemNaoOK)
-      })
-
-      /* .catch(() => {
-        servidorErrorMessage()
-      }) */
-
+     
     return response
   }
 
@@ -59,12 +32,6 @@ export default class TaskService {
   static async list() {
     const response = await api
     .get('subtasks')
-   /* .catch(() => {
-        servidorErrorMessage()
-      }) */
-    console.log( response )
-    console.log("response")
-    
 
     const responseData = response.data
 
@@ -74,9 +41,6 @@ export default class TaskService {
   static async listWithFilter(filter, value) {
     const response = await api
       .get(`subtasks?filter%5B${filter}%5D=${value}`)
-      /* .catch(() => {
-        servidorErrorMessage()
-      }) */
 
     const responseData = response.data
 
@@ -87,9 +51,6 @@ export default class TaskService {
   static async listWithManyFilters(filters) {
     const response = await api
     .get(`subtasks?${filters}`)
-      /* .catch(() => {
-        servidorErrorMessage()
-      }) */
 
     const responseData = response.data
 
@@ -100,10 +61,6 @@ export default class TaskService {
   static async find(_id) {
     const response = await api
       .get(`subtasks/${_id}`)
-
-      /* .catch(() => {
-        servidorErrorMessage()
-      }) */
 
     return response.data
   }

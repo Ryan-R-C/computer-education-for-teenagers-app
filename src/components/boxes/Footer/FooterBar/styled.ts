@@ -3,18 +3,13 @@ import styled from "styled-components";
 export const FooterBar= styled.div`
         z-index: 99 !important;
         width: 100%;
-        /* margin: 220px 5%; */
         display: flex;
         flex-wrap: nowrap;
         justify-content: center;
-        /* justify-content: space-between; */
-        /* gap: 10%; */
         gap: 60px;
         height: 100px;
         padding: 20px 5%;
         position: fixed;
-        /* bottom: top; */
-        /* top: calc(100vh - 100px); */
         bottom: 0;
         left: 0;
         right: 0;

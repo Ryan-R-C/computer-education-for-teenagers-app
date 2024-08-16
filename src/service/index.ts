@@ -6,13 +6,12 @@ const {
 
 const REACT_APP_BACKENDURL = "https://computer-education-backend.onrender.com"
 
-const backendUrl = REACT_APP_ENVNODE == "development" ? `http://localhost:8000` : REACT_APP_BACKENDURL
+const backendUrl = REACT_APP_ENVNODE ==="development" ? REACT_APP_BACKENDURL : REACT_APP_BACKENDURL
 
 export const ip = `${backendUrl}`;
 
 console.log(ip)
 
-//* **************************************************************************************/
 const api = axios.create({
   baseURL: `${ip}/`,
   timeout: 50000,

@@ -5,7 +5,6 @@ import { colors } from '../../../globalStyle'
 import { ButtonProps } from '../../../types';
 
 const CheckIcon = ({size, color, variant}: ButtonProps) => {
-  // then use it as a normal React Component
   return(
     <TickCircle
     size={size || "32"}

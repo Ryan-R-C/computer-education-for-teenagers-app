@@ -1,11 +1,9 @@
-import { createContext, useState, useEffect, useContext } from "react";
-// import FitCultural from "service/fitCultural/fitCultural";
-
+import { createContext, useState, useContext } from "react";
 import UserScoreService from "../service/UserScores";
 
 
 import { ReactProps, QuestionProps, TaskProps } from "../types";
-import { getTaskId, getUserId, getUserScore, setUserScore } from "../utils/localStorage";
+import { getTaskId, getUserId, setUserScore } from "../utils/localStorage";
 
 export const TaskControllerContext = createContext({});
 

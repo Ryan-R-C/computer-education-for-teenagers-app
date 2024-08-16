@@ -7,7 +7,6 @@ export const Container = styled.div`
   background: linear-gradient(180deg, #FFFFFF 0%, #EDEDED 26.99%, #ECECEC 28.17%);
 
   display: flex;
-  /* justify-content: space-evenly; */
   flex-direction: column;
   gap: 25px;
 
@@ -53,7 +52,6 @@ gap: 14px;
 align-items: center;
 
 & > :first-child {
-  /* width: 100%; */
   margin-right: 20px;
 }
 
