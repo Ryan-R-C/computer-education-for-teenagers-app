@@ -1,82 +1,73 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import QuestionService from "../service/Questions";
+import { createContext, useContext, useState } from 'react'
+import QuestionService from '../service/Questions'
 
-import { QuestionProps, ReactProps } from "../types";
+import { QuestionProps, ReactProps } from '../types'
 
-export const QuestionsContext = createContext({});
+export const QuestionsContext = createContext({})
 
 export default function QuestionsProvider({ children }: ReactProps) {
-  const [questions, setQuestion] = useState<QuestionProps[] | any>();
+  const [questions, setQuestion] = useState<QuestionProps[] | any>()
 
-  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false)
 
   async function loadQuestion(filter?: string) {
-    setLoadingSubmit(false);
+    setLoadingSubmit(false)
 
-    const allQuestion = await QuestionService.listWithManyFilters(filter);
-    setQuestion(allQuestion);
+    const allQuestion = await QuestionService.listWithManyFilters(filter)
+    setQuestion(allQuestion)
 
-    return allQuestion;
+    return allQuestion
   }
 
   async function findQuestion(_id: string) {
     try {
-      setLoadingSubmit(true);
-      const selectedQuestion = await QuestionService.find(_id);
+      setLoadingSubmit(true)
+      const selectedQuestion = await QuestionService.find(_id)
 
-      return selectedQuestion;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      return selectedQuestion
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
 
   async function createQuestion(data: QuestionProps) {
     try {
-      setLoadingSubmit(true);
-      const isCreated = await QuestionService.create(data);
-      if (isCreated) await loadQuestion();
+      setLoadingSubmit(true)
+      const isCreated = await QuestionService.create(data)
+      if (isCreated) await loadQuestion()
 
-      return isCreated;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      return isCreated
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
 
   async function updateQuestion(_id: string, data: QuestionProps) {
     try {
-      setLoadingSubmit(true);
+      setLoadingSubmit(true)
 
-      const isUpdated = await QuestionService.update(_id, data);
-      if (isUpdated) await loadQuestion();
+      const isUpdated = await QuestionService.update(_id, data)
+      if (isUpdated) await loadQuestion()
 
-      return isUpdated;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      return isUpdated
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
 
   async function deleteQuestion(_id: string) {
     try {
-      setLoadingSubmit(true);
-      await QuestionService.delete(_id);
-      loadQuestion();
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      setLoadingSubmit(true)
+      await QuestionService.delete(_id)
+      loadQuestion()
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
-
 
   return (
     <QuestionsContext.Provider
@@ -94,11 +85,11 @@ export default function QuestionsProvider({ children }: ReactProps) {
     >
       {children}
     </QuestionsContext.Provider>
-  );
+  )
 }
 
 export function useQuestions() {
-  const context = useContext(QuestionsContext);
+  const context = useContext(QuestionsContext)
 
   const {
     questions,
@@ -110,7 +101,7 @@ export function useQuestions() {
     deleteQuestion,
     loadingSubmit,
     setLoadingSubmit,
-  }: any = context;
+  }: any = context
 
   return {
     questions,
@@ -122,5 +113,5 @@ export function useQuestions() {
     deleteQuestion,
     loadingSubmit,
     setLoadingSubmit,
-  };
+  }
 }

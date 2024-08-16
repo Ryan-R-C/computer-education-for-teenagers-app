@@ -1,8 +1,8 @@
-import { ReactElement, ReactNode } from 'react'
 import { render as rtlRender } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter, Routes, Route } from 'react-router-dom'
 import nock from 'nock'
+import { ReactElement, ReactNode } from 'react'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 
 type Options = {
   initialRoute?: string
@@ -13,10 +13,7 @@ type Props = {
   children?: ReactNode
 }
 
-function render(
-  ui: ReactElement,
-  { initialRoute = '/', routePath = '/' }: Options = {},
-) {
+function render(ui: ReactElement, { initialRoute = '/', routePath = '/' }: Options = {}) {
   function Wrapper({ children }: Props) {
     return (
       <MemoryRouter initialEntries={[initialRoute]}>

@@ -1,15 +1,6 @@
-
+import { ButtonProps } from '../../../types'
 import * as S from './styled'
-import { ButtonProps } from '../../../types';
-
 
 export default function FlexContainer({ children }: ButtonProps) {
-
-    return (
-        <S.FlexContainer>
-            {
-                children
-            }
-        </S.FlexContainer>
-    )
+  return <S.FlexContainer>{children}</S.FlexContainer>
 }

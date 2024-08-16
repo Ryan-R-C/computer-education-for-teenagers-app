@@ -1,38 +1,24 @@
-import { useEffect, useMemo, useState } from "react";
-import * as S from "./Dashboard.styled";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react'
+import * as S from './Dashboard.styled'
 
-import DefaultButtonBorderFeatured from "../../components/buttons/DefaultButtonBorderFeatured";
-import FeaturedButtonBorderFeatured from "../../components/buttons/FeaturedButtonBorderFeatured";
-import FlexContainer from "../../components/boxes/FlexContainer";
-import Icons from "../../components/icons";
-import CardContainer from "../../components/boxes/CardContainer";
-import { TaskProps } from "../../types";
-import Bar from "../../components/boxes/Bar";
-import PlayIcon from "../../components/icons/PlayIcon";
-import DefaultButtonGrouped from "../../components/buttons/ButtonGrouped";
-import HeaderBar from "../../components/boxes/header/HeaderBar";
-import Footer from "../../components/boxes/Footer";
-import { useTasks } from "../../contexts/TaskProvider";
-import TaskList from "./components/TaskList";
+import Footer from '../../components/boxes/Footer'
+import HeaderBar from '../../components/boxes/header/HeaderBar'
+import DefaultButtonGrouped from '../../components/buttons/ButtonGrouped'
+import { useTasks } from '../../contexts/TaskProvider'
+import { TaskProps } from '../../types'
+import TaskList from './components/TaskList'
 
+export default function Dashboard() {
+  const { tasks, loadTaskAssociated } = useTasks()
 
-export default function Dashboard({ }) {
-
-  const {
-    tasks,
-    loadTaskAssociated,
-  } = useTasks()
-
-  const [activeMenu, setActiveMenu] = useState(0);
-  const [tasksAvaliable, setTasksAvaliable] = useState<TaskProps[]>([]);
-
+  const [activeMenu, setActiveMenu] = useState(0)
+  const [tasksAvaliable, setTasksAvaliable] = useState<TaskProps[]>([])
 
   function handleFilterTasks(isFinished, tasksList: TaskProps[]) {
     const filteredTasks: TaskProps[] = tasksList.filter(
-      ({ subTasks, userScore }) => (subTasks?.length <= userScore[0]?.level) === isFinished
+      ({ subTasks, userScore }) => subTasks?.length <= userScore[0]?.level === isFinished,
     )
-    
+
     return filteredTasks
   }
 
@@ -45,11 +31,10 @@ export default function Dashboard({ }) {
 
     const finishedTasks: TaskProps[] = handleFilterTasks(isFinished, tasks)
 
-    return setTasksAvaliable(finishedTasks);
-
+    return setTasksAvaliable(finishedTasks)
   }
 
-  async function handleLoadTasks(){
+  async function handleLoadTasks() {
     const allTasks = await loadTaskAssociated()
 
     const unfinishedTasks = handleFilterTasks(false, allTasks)
@@ -57,42 +42,25 @@ export default function Dashboard({ }) {
     setTasksAvaliable(unfinishedTasks)
   }
 
-  useEffect(
-    () => {
-      handleLoadTasks()
-    }, []
-  )
+  useEffect(() => {
+    handleLoadTasks()
+  }, [])
 
   return (
     <S.Container>
-      <HeaderBar>
-
-      </HeaderBar>
+      <HeaderBar></HeaderBar>
       <S.StepContainer>
-        <DefaultButtonGrouped
-          onClick={() => handleToggleMenu(0)}
-          variant={`left ${activeMenu !== 0 ? 'white' : ''}`}
-        >
+        <DefaultButtonGrouped onClick={() => handleToggleMenu(0)} variant={`left ${activeMenu !== 0 ? 'white' : ''}`}>
           Pendentes
         </DefaultButtonGrouped>
-        <DefaultButtonGrouped
-          onClick={() => handleToggleMenu(1)}
-          variant={`right ${activeMenu !== 1 ? 'white' : ''}`}
-        >
+        <DefaultButtonGrouped onClick={() => handleToggleMenu(1)} variant={`right ${activeMenu !== 1 ? 'white' : ''}`}>
           Finalizadas
         </DefaultButtonGrouped>
       </S.StepContainer>
       <>
-
-
-
-      <TaskList tasksAvaliable={tasksAvaliable} />
-
-
-
+        <TaskList tasksAvaliable={tasksAvaliable} />
       </>
       <Footer />
     </S.Container>
-
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import RoutesApp from './routes'
 import { GlobalStyle } from './globalStyle'
+import RoutesApp from './routes'
 
 function App() {
   return (
@@ -7,7 +7,6 @@ function App() {
       <RoutesApp />
       <GlobalStyle />
     </>
-
   )
 }
 

@@ -1,6 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import { theme } from "./config";
-
+import { createGlobalStyle } from 'styled-components'
+import { theme } from './config'
 
 export const GlobalStyle = createGlobalStyle`
 * {
@@ -33,8 +32,7 @@ p {
 
 `
 
-
 export const colors = {
-    main: "#424df8",
-    secondary: "#BEC2FC",
+  main: '#424df8',
+  secondary: '#BEC2FC',
 }

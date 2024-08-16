@@ -1,104 +1,91 @@
-import { createContext, useState, useContext } from "react";
-import UserService from "../service/Users";
+import { createContext, useContext, useState } from 'react'
+import UserService from '../service/Users'
 
-import { UserProps, ReactProps } from "../types";
-import { getUserId, setUserId } from "../utils/localStorage";
+import { ReactProps, UserProps } from '../types'
+import { getUserId, setUserId } from '../utils/localStorage'
 
-export const UsersContext = createContext({});
+export const UsersContext = createContext({})
 
 export default function UsersProvider({ children }: ReactProps) {
-  const [users, setUser] = useState<UserProps[] | any>();
+  const [users, setUser] = useState<UserProps[] | any>()
 
-  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false)
 
   async function loadUser(filter?: string) {
-    setLoadingSubmit(false);
+    setLoadingSubmit(false)
 
-    const allUser = await UserService.listWithManyFilters(filter);
-    setUser(allUser);
+    const allUser = await UserService.listWithManyFilters(filter)
+    setUser(allUser)
 
-    return allUser;
+    return allUser
   }
 
   async function findUser(_id: string) {
     try {
-      setLoadingSubmit(true);
-      const selectedUser = await UserService.find(_id);
+      setLoadingSubmit(true)
+      const selectedUser = await UserService.find(_id)
 
-      return selectedUser;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      return selectedUser
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
 
   async function createUser(data: UserProps) {
     try {
-      setLoadingSubmit(true);
-      const isCreated = await UserService.create(data);
-      if (isCreated) await loadUser();
+      setLoadingSubmit(true)
+      const isCreated = await UserService.create(data)
+      if (isCreated) await loadUser()
 
-      return isCreated;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      return isCreated
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
 
   async function updateUser(_id: string, data: UserProps) {
     try {
-      setLoadingSubmit(true);
+      setLoadingSubmit(true)
 
-      const isUpdated = await UserService.update(_id, data);
-      if (isUpdated) await loadUser();
+      const isUpdated = await UserService.update(_id, data)
+      if (isUpdated) await loadUser()
 
-      return isUpdated;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      return isUpdated
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
 
   async function deleteUser(_id: string) {
     try {
-      setLoadingSubmit(true);
-      await UserService.delete(_id);
-      loadUser();
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      setLoadingSubmit(true)
+      await UserService.delete(_id)
+      loadUser()
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
-
-
 
   async function findOrCreateUser() {
     try {
-      setLoadingSubmit(true);
+      setLoadingSubmit(true)
 
       const userId = getUserId()
 
-      const { _id } = await UserService.findOrCreate(userId);
+      const { _id } = await UserService.findOrCreate(userId)
 
-      if(_id != userId) setUserId(_id)
-      
-      return _id;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      if (_id != userId) setUserId(_id)
+
+      return _id
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
-
 
   return (
     <UsersContext.Provider
@@ -117,11 +104,11 @@ export default function UsersProvider({ children }: ReactProps) {
     >
       {children}
     </UsersContext.Provider>
-  );
+  )
 }
 
 export function useUsers() {
-  const context = useContext(UsersContext);
+  const context = useContext(UsersContext)
 
   const {
     users,
@@ -134,7 +121,7 @@ export function useUsers() {
     deleteUser,
     loadingSubmit,
     setLoadingSubmit,
-  }: any = context;
+  }: any = context
 
   return {
     users,
@@ -147,5 +134,5 @@ export function useUsers() {
     deleteUser,
     loadingSubmit,
     setLoadingSubmit,
-  };
+  }
 }

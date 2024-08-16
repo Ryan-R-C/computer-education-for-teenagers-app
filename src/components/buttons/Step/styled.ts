@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { StepProps } from "../../../types";
+import styled from 'styled-components'
+import { StepProps } from '../../../types'
 
 export const StepDisabled = styled.button`
-        cursor: pointer;
-        transition: all .3s;
+  cursor: pointer;
+  transition: all 0.3s;
 
-        ${(props: StepProps) => {
-                if(!!props?.current)
-                        return `
+  ${(props: StepProps) => {
+    if (props?.current)
+      return `
                         width: 60px;
                         height: 40px;
                         border-radius: 50px;
@@ -15,8 +15,8 @@ export const StepDisabled = styled.button`
                         border: 0px solid black;
                         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
                         `
-                else 
-                        return `
+    else
+      return `
                         width: 40px;
                         height: 40px;
                         border: 0px solid black;
@@ -24,9 +24,5 @@ export const StepDisabled = styled.button`
                         background-color: #BEC2FC;
                         box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
                         `
-        }
-        };
-
+  }};
 `
-
-

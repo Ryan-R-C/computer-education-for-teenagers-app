@@ -1,82 +1,73 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import OptionService from "../service/Options";
+import { createContext, useContext, useState } from 'react'
+import OptionService from '../service/Options'
 
-import { OptionProps, ReactProps } from "../types";
+import { OptionProps, ReactProps } from '../types'
 
-export const OptionsContext = createContext({});
+export const OptionsContext = createContext({})
 
 export default function OptionsProvider({ children }: ReactProps) {
-  const [options, setOption] = useState<OptionProps[] | any>();
+  const [options, setOption] = useState<OptionProps[] | any>()
 
-  const [loadingSubmit, setLoadingSubmit] = useState(false);
+  const [loadingSubmit, setLoadingSubmit] = useState(false)
 
   async function loadOption(filter?: string) {
-    setLoadingSubmit(false);
+    setLoadingSubmit(false)
 
-    const allOption = await OptionService.listWithManyFilters(filter);
-    setOption(allOption);
+    const allOption = await OptionService.listWithManyFilters(filter)
+    setOption(allOption)
 
-    return allOption;
+    return allOption
   }
 
   async function findOption(_id: string) {
     try {
-      setLoadingSubmit(true);
-      const selectedOption = await OptionService.find(_id);
+      setLoadingSubmit(true)
+      const selectedOption = await OptionService.find(_id)
 
-      return selectedOption;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      return selectedOption
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
 
   async function createOption(data: OptionProps) {
     try {
-      setLoadingSubmit(true);
-      const isCreated = await OptionService.create(data);
-      if (isCreated) await loadOption();
+      setLoadingSubmit(true)
+      const isCreated = await OptionService.create(data)
+      if (isCreated) await loadOption()
 
-      return isCreated;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      return isCreated
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
 
   async function updateOption(_id: string, data: OptionProps) {
     try {
-      setLoadingSubmit(true);
+      setLoadingSubmit(true)
 
-      const isUpdated = await OptionService.update(_id, data);
-      if (isUpdated) await loadOption();
+      const isUpdated = await OptionService.update(_id, data)
+      if (isUpdated) await loadOption()
 
-      return isUpdated;
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      return isUpdated
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
 
   async function deleteOption(_id: string) {
     try {
-      setLoadingSubmit(true);
-      await OptionService.delete(_id);
-      loadOption();
-    }
-    
-    catch (e) {
-      console.log("error", e);
-      setLoadingSubmit(false);
+      setLoadingSubmit(true)
+      await OptionService.delete(_id)
+      loadOption()
+    } catch (e) {
+      console.error('error', e)
+      setLoadingSubmit(false)
     }
   }
-
 
   return (
     <OptionsContext.Provider
@@ -94,11 +85,11 @@ export default function OptionsProvider({ children }: ReactProps) {
     >
       {children}
     </OptionsContext.Provider>
-  );
+  )
 }
 
 export function useOptions() {
-  const context = useContext(OptionsContext);
+  const context = useContext(OptionsContext)
 
   const {
     options,
@@ -110,7 +101,7 @@ export function useOptions() {
     deleteOption,
     loadingSubmit,
     setLoadingSubmit,
-  }: any = context;
+  }: any = context
 
   return {
     options,
@@ -122,5 +113,5 @@ export function useOptions() {
     deleteOption,
     loadingSubmit,
     setLoadingSubmit,
-  };
+  }
 }

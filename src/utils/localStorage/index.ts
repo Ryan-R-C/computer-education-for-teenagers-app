@@ -1,51 +1,41 @@
-import { UserScoreProps } from "../../types"
-import generateBson from "../bsonGenerator"
+import { UserScoreProps } from '../../types'
+import generateBson from '../bsonGenerator'
 
-export function getUserId(){
-    let userId = localStorage.getItem("userId")
+export function getUserId() {
+  let userId = localStorage.getItem('userId')
 
-    if(!userId){
-        userId = generateBson()
+  if (!userId) {
+    userId = generateBson()
 
-        console.log(userId)
+    console.log(userId)
 
-        setUserId(userId)
-    }
+    setUserId(userId)
+  }
 
-    return userId
+  return userId
 }
 
-
-export function setUserId(_id){
-    localStorage.setItem("userId" , _id)
+export function setUserId(_id) {
+  localStorage.setItem('userId', _id)
 }
 
+export function getUserScore(): UserScoreProps | null {
+  const userScore: UserScoreProps | null = JSON.parse(localStorage.getItem('userScore') || '{}')
 
-
-export function getUserScore(): UserScoreProps | null{
-    let userScore: UserScoreProps | null = JSON.parse(localStorage.getItem("userScore") || '{}')
-
-    return userScore
+  return userScore
 }
 
-
-export function setUserScore(scoreData){
-    const scoreDataParsed = JSON.stringify(scoreData)
-    localStorage.setItem("userScore" , scoreDataParsed)
+export function setUserScore(scoreData) {
+  const scoreDataParsed = JSON.stringify(scoreData)
+  localStorage.setItem('userScore', scoreDataParsed)
 }
 
+export function getTaskId(): string | null {
+  const taskId: string | null = localStorage.getItem('taskId') || '{}'
 
-
-
-
-
-export function getTaskId(): string | null{
-    let taskId: string | null = localStorage.getItem("taskId") || '{}'
-
-    return taskId
+  return taskId
 }
 
-
-export function setTaskId(scoreData){
-    localStorage.setItem("taskId" , scoreData)
+export function setTaskId(scoreData) {
+  localStorage.setItem('taskId', scoreData)
 }
