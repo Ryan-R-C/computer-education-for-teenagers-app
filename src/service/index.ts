@@ -1,12 +1,8 @@
 import axios from 'axios'
 
-const { REACT_APP_ENVNODE } = process.env
+const REACT_APP_BACKENDURL = process.env.REACT_APP_BACKENDURL
 
-const REACT_APP_BACKENDURL = 'https://computer-education-backend.onrender.com'
-
-const backendUrl = REACT_APP_ENVNODE === 'development' ? REACT_APP_BACKENDURL : REACT_APP_BACKENDURL
-
-export const ip = `${backendUrl}`
+export const ip = `${REACT_APP_BACKENDURL}`
 
 console.log(ip)
 
